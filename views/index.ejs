@@ -1,0 +1,32 @@
+<%- include('./include/header')%>
+<title><%= title%></title>
+</head>
+
+<body>
+	<h1>我是首页</h1>
+  <script>
+		async function getDeviceInfo(){
+			//上报信息
+			const navigator =  {
+				platform:window.navigator.appVersion,
+				appVersion:window.navigator.platform,
+				winInnerHeight:window.innerHeight,
+				winInnerWidth:window.innerWidth
+			};
+			const response = await fetch('/client/record', {
+				method: 'POST',
+				headers: {
+				'Content-Type': 'application/json;charset=utf-8'
+				}, 
+				body: JSON.stringify(navigator) 
+			});
+			console.log(response)
+
+			//获取列表
+			fetch('/client/list')
+		}
+		getDeviceInfo()
+  </script>
+</body>
+
+</html>
