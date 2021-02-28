@@ -1,5 +1,5 @@
 const Router = require('koa-router')
-const clientMsgService = require('../service/clientMsg');
+const clientMsgService = require('../services/clientMsg');
 const router = new Router()
 
 router.post('/record', async (ctx) => {
@@ -12,7 +12,7 @@ router.post('/record', async (ctx) => {
 			let { visitCount } = queryRes;
 			visitCount++;
 			clientMsgService.updateIpVisitCount(ip, visitCount)
-			ctx.body = { code: 2010, msg: '更新成功' };
+			ctx.body = { code: 200, msg: '更新成功' };
 		} else {
 			let addressRes = await clientMsgService.getAddress(ip)
 			if (addressRes) {
@@ -30,7 +30,7 @@ router.post('/record', async (ctx) => {
 				})
 				ctx.body = { code: 200, msg: '保存成功' };
 			} else {
-				ctx.body = { code: 5010, msg: '获取地址失败' };
+				ctx.body = { code: 0, msg: '获取地址失败' };
 			}
 		}
 	} catch (err) {
@@ -46,7 +46,7 @@ router.get('/list', async (ctx) => {
 		if (result) {
 			ctx.body = { code: 200, result };
 		} else {
-			ctx.body = { code: 5020, msg: '获取列表失败' };
+			ctx.body = { code: 0, msg: '获取列表失败' };
 		}
 	} catch (err) {
 		console.log(err);

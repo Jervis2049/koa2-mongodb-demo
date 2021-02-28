@@ -8,7 +8,7 @@
 ├─app.js  //入口文件
 ├─views   //ejs模板
 ├─static  //静态资源
-├─service //操作数据库的方法
+├─services //操作数据库的方法
 ├─routers //路由
 ├─models  //定义接口字段
 ├─db      //mongodb 配置
